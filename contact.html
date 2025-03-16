@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f8ff; /* Light blue for a clean look */
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #00509e;
+            }
+            p {
+                text-align: center;
+                font-size: 1.2em;
+            }
+            form {
+                width: 50%;
+                margin: 20px auto;
+                padding: 20px;
+                background: #ffffff;
+                border: 2px solid #00509e;
+                border-radius: 10px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="text"], input[type="email"], textarea {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            input[type="radio"], input[type="checkbox"] {
+                margin-right: 5px;
+            }
+            input[type="submit"] {
+                background-color: #00509e;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 1em;
+                cursor: pointer;
+                display: block;
+                margin: 0 auto;
+            }
+            input[type="submit"]:hover {
+                background-color: #003f7d;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Contact</h1>
+        <p>For any queries or to talk with me, please fill out the form below:</p>
+        <form id="contactForm">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your name" required>
+
+            <label for="mail">Email:</label>
+            <input type="email" id="mail" name="mail" placeholder="Enter your email" required>
+
+            <label>Choose your gender:</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+
+            <label>Select Your Interests:</label>
+            <input type="checkbox" id="coding" name="interests" value="coding">
+            <label for="coding">Coding</label>
+            <input type="checkbox" id="reading" name="interests" value="reading">
+            <label for="reading">Reading</label>
+
+            <label for="bio">Bio (up to 200 characters):</label>
+            <textarea id="bio" name="bio" placeholder="Write about yourself" maxlength="200" rows="4"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <script>
+            document.getElementById('contactForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent page reload
+                const name = document.getElementById('username').value;
+                const email = document.getElementById('mail').value;
+
+                // Collect all data
+                const gender = document.querySelector('input[name="gender"]:checked')?.value || "Not specified";
+                const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(el => el.value).join(", ");
+                const bio = document.getElementById('bio').value;
+
+                // Simulate sending email
+                alert(`Thank you, ${name}. Your message has been sent!`);
+                console.log({
+                    Name: name,
+                    Email: email,
+                    Gender: gender,
+                    Interests: interests,
+                    Bio: bio
+                });
+
+                // Here, you can use EmailJS, a backend server, or services like Nodemailer to send an email
+                // Look into EmailJS for client-side email sending: https://www.emailjs.com/
+            });
+        </script>
+    </body>
+</html>
